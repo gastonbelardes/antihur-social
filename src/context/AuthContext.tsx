@@ -7,7 +7,7 @@ import type { AuthContextType, User } from "../types/auth";
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Acá ponés la URL donde esté corriendo la API del profe (generalmente es el puerto 3000 o 3001)
-const API_URL = "http://localhost:3000"; 
+const API_URL = "http://localhost:3001"; 
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     

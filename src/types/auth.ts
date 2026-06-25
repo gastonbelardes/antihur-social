@@ -4,6 +4,7 @@
 export type User = {
     id: string; 
     nickName: string;
+    email: string
 };
 
 // 2. El molde de los datos que viajan desde tu formulario de login
