@@ -20,7 +20,7 @@ export function MiNavbar() {
 
                     <Nav>
                         {/* Renderizado condicional simulado. Luego usaremos isAuthenticated */}
-                        {true ? (
+                        {!true ? (
                             <>
                                 <Nav.Link as={Link} to="/perfil" className="fw-bold text-info">
                                     Mi Perfil
@@ -30,7 +30,12 @@ export function MiNavbar() {
                                 </Nav.Link>
                             </>
                         ) : (
+                            <>
+                            
                             <Nav.Link as={Link} to="/login">Iniciar Sesión</Nav.Link>
+                            <Nav.Link as={Link} to="/signIn">Registrarse</Nav.Link>
+                            </>
+                            
                         )}
                     </Nav>
                 </Navbar.Collapse>

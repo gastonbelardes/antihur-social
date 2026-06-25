@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { MiNavbar } from './components/Navbar';
 import { LoginPage } from './pages/LoginPage';
+import {SignInPage} from "./pages/SignInPage"
 // import { HomePage } from './pages/HomePage';
 // import { PerfilPage } from './pages/PerfilPage';
 // import { DetallePost } from './pages/DetallePost';
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 {/* Rutas Públicas */}
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/signIn" element={<SignInPage />} />
                 
                 {/* Por ahora las dejamos comentadas hasta que crees los archivos */}
                 {/* <Route path="/" element={<HomePage />} /> */}
