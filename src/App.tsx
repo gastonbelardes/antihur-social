@@ -5,6 +5,7 @@ import { LoginPage } from './pages/LoginPage';
 import { RegistroPage } from './pages/RegistroPage';
 import { DetallePostPage } from './pages/DetallePostPage';
 import { Navbar } from './components/Navbar';
+import { ProfilePage } from './pages/ProfilePage';
 
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
           
           {/* Ruta dinámica para el detalle de un post */}
           <Route path="/post/:id" element={<DetallePostPage />} />
+
+          {/*Ruta para ir al perfil*/}
+          <Route path='/profile' element={<ProfilePage/>} />
           
           {/* Por si escriben cualquier otra URL, que vuelva al home */}
           <Route path="*" element={<HomePage />} />
