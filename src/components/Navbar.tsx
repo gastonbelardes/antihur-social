@@ -1,45 +1,42 @@
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; 
-// import { useAuth } from '../context/AuthContext'; // Descomentar después
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { Navbar as BootstrapNavbar, Container, Nav } from 'react-bootstrap';
 
-export function MiNavbar() {
-    // const { user, isAuthenticated, logout } = useAuth(); // Descomentar después
+export const Navbar = () => {
+  const authContext = useContext(AuthContext);
+  const user = authContext?.user;
+  const navigate = useNavigate();
 
-    return (
-        <Navbar expand="lg" bg="dark" data-bs-theme="dark" sticky="top">
-            <Container>
-                <Navbar.Brand as={Link} to="/">
-                    🌐 Anti-Social Net
-                </Navbar.Brand>
-                
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/">Feed</Nav.Link>
-                    </Nav>
+  const handleCerrarSesion = () => {
+    authContext?.logout();
+    navigate('/login');
+  };
 
-                    <Nav>
-                        {/* Renderizado condicional simulado. Luego usaremos isAuthenticated */}
-                        {!true ? (
-                            <>
-                                <Nav.Link as={Link} to="/perfil" className="fw-bold text-info">
-                                    Mi Perfil
-                                </Nav.Link>
-                                <Nav.Link onClick={() => console.log("Cerrar sesión")}>
-                                    Cerrar Sesión
-                                </Nav.Link>
-                            </>
-                        ) : (
-                            <>
-                            
-                            <Nav.Link as={Link} to="/login">Iniciar Sesión</Nav.Link>
-                            <Nav.Link as={Link} to="/signIn">Registrarse</Nav.Link>
-                            </>
-                            
-                        )}
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    );
-}
+  return (
+    <BootstrapNavbar bg="dark" variant="dark" expand="lg" className="px-4">
+      <Container fluid>
+        <BootstrapNavbar.Brand as={Link} to="/">
+          🌐 Anti-Social Net
+        </BootstrapNavbar.Brand>
+        <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
+        <BootstrapNavbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/">Feed</Nav.Link>
+            {user ? (
+              <>
+                <Nav.Link as={Link} to="/profile">Mi Perfil</Nav.Link>
+                <Nav.Link onClick={handleCerrarSesion}>Cerrar Sesión</Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login">Iniciar Sesión</Nav.Link>
+                <Nav.Link as={Link} to="/registro">Registrarse</Nav.Link>
+              </>
+            )}
+          </Nav>
+        </BootstrapNavbar.Collapse>
+      </Container>
+    </BootstrapNavbar>
+  );
+};

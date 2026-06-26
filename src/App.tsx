@@ -1,31 +1,34 @@
-import { Routes, Route } from 'react-router-dom';
-import { MiNavbar } from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
-import {SignInPage} from "./pages/SignInPage"
-// import { HomePage } from './pages/HomePage';
-// import { PerfilPage } from './pages/PerfilPage';
-// import { DetallePost } from './pages/DetallePost';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { RegistroPage } from './pages/RegistroPage';
+import { DetallePostPage } from './pages/DetallePostPage';
+import { Navbar } from './components/Navbar';
+
 
 function App() {
-    return (
-        <div>
-            <MiNavbar />
-            
-            <Routes>
-                {/* Rutas Públicas */}
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signIn" element={<SignInPage />} />
-                
-                {/* Por ahora las dejamos comentadas hasta que crees los archivos */}
-                {/* <Route path="/" element={<HomePage />} /> */}
-                {/* <Route path="/post/:id" element={<DetallePost />} /> */}
-                
-                {/* Rutas Privadas (Luego las protegeremos) */}
-                {/* <Route path="/perfil" element={<PerfilPage />} /> */}
-            </Routes>
-        </div>
-    );
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          {/* Ruta principal: Feed de posts */}
+          <Route path="/" element={<HomePage />} />
+          
+          {/* Rutas de autenticación */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/registro" element={<RegistroPage />} />
+          
+          {/* Ruta dinámica para el detalle de un post */}
+          <Route path="/post/:id" element={<DetallePostPage />} />
+          
+          {/* Por si escriben cualquier otra URL, que vuelva al home */}
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
 }
 
 export default App;
