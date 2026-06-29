@@ -1,13 +1,15 @@
-import { Container, Spinner, Alert,Row,Col } from "react-bootstrap";
+import { Container, Spinner, Alert,Row,Col, Button} from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import {useState, useEffect} from "react"
 import { PostCard } from "../components/PostCard";
+import { useNavigate } from "react-router-dom";
 
 export function ProfilePage(){
     const {user} = useAuth()
     const [posts, setPosts] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
+    const navigate = useNavigate()
     
     const API_URL = "http://localhost:3001";
     
@@ -46,7 +48,7 @@ export function ProfilePage(){
             )}
 
             {!cargando && !error && posts.length === 0 && (
-                <Alert variant="info">Todavía no realizaste publicaciones. ¡El vacío es total!</Alert>
+                <Alert variant="info">¡Todavía no realizaste publicaciones!</Alert>
             )}
             <Row>
                 {posts.map((post: any) => (
@@ -56,6 +58,9 @@ export function ProfilePage(){
                     </Col>
                 ))}
             </Row>
+            <Button onClick={()=> navigate("/publicacion")}>
+                <p>Nueva publicación</p>
+            </Button>
         </Container>
     )
 }

@@ -6,6 +6,7 @@ import { RegistroPage } from './pages/RegistroPage';
 import { DetallePostPage } from './pages/DetallePostPage';
 import { Navbar } from './components/Navbar';
 import { ProfilePage } from './pages/ProfilePage';
+import { PublicacionPage } from './pages/PublicacionPage';
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
 
           {/*Ruta para ir al perfil*/}
           <Route path='/profile' element={<ProfilePage/>} />
+
+          {/*Ruta para crear publicacion*/}
+          <Route path='/publicacion' element={<PublicacionPage/>}/>
           
           {/* Por si escriben cualquier otra URL, que vuelva al home */}
           <Route path="*" element={<HomePage />} />

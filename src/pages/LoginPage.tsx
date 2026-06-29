@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-// import { useAuth } from "../context/AuthContext"; // Lo descomentamos cuando armes el contexto
 
 export function LoginPage() {
     
