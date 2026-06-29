@@ -17,6 +17,6 @@ export type LoginData = {
 export type AuthContextType = {
     user: User | null; // Puede haber un usuario logueado, o puede ser null si es un invitado
     isAuthenticated: boolean; // Un booleano fácil para preguntar si está logueado o no
-    login: (nickName: string) => Promise<boolean>; // La función que va a hacer el fetch a la API
+    login: (nickName: string, password: string) => Promise<boolean>;
     logout: () => void; // La función para cerrar sesión
 };

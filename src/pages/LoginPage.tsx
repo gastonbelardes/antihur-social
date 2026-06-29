@@ -4,22 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export function LoginPage() {
-    
+
     const [datos, setDatos] = useState({
         nickName: "",
         password: ""
     });
 
-    
     const [errores, setErrores] = useState<Record<string, string>>({});
     const [errorLogin, setErrorLogin] = useState("");
 
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    
     const manejarCambio = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+
         setDatos({
             ...datos,
             [name]: value
@@ -40,35 +39,31 @@ export function LoginPage() {
         return nuevosErrores;
     };
 
-    
     const manejarSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const erroresEncontrados = validar();
+        const erroresEncontrados = validar();
 
-    if (Object.keys(erroresEncontrados).length > 0) {
-        setErrores(erroresEncontrados);
-        return;
-    }
-
-    setErrores({});
-    
-    
-    if (datos.password === "123456") {
-        
-        
-        const loginExitoso = await login(datos.nickName);
-        
-        if (loginExitoso) {
-            
-            navigate("/"); 
-        } else {
-            setErrorLogin("El usuario no existe. ¡Registrate primero!");
+        if (Object.keys(erroresEncontrados).length > 0) {
+            setErrores(erroresEncontrados);
+            return;
         }
-    } else {
-        setErrorLogin("Credenciales incorrectas");
-    }
-};
+
+        setErrores({});
+        setErrorLogin("");
+
+        const loginExitoso = await login(
+            datos.nickName,
+            datos.password
+        );
+
+        if (loginExitoso) {
+            navigate("/");
+        } else {
+            setErrorLogin("Usuario o contraseña incorrectos");
+        }
+    };
+
     return (
         <Container className="mt-5" style={{ maxWidth: "500px" }}>
             <h2 className="mb-4">Iniciar Sesión</h2>
@@ -80,8 +75,10 @@ export function LoginPage() {
             )}
 
             <Form onSubmit={manejarSubmit}>
+
                 <Form.Group className="mb-3">
                     <Form.Label>Usuario (nickName)</Form.Label>
+
                     <Form.Control
                         type="text"
                         name="nickName"
@@ -89,6 +86,7 @@ export function LoginPage() {
                         onChange={manejarCambio}
                         placeholder="Ej: gaston_dev"
                     />
+
                     <small className="text-danger fw-bold">
                         {errores.nickName}
                     </small>
@@ -96,21 +94,28 @@ export function LoginPage() {
 
                 <Form.Group className="mb-4">
                     <Form.Label>Contraseña</Form.Label>
+
                     <Form.Control
                         type="password"
                         name="password"
                         value={datos.password}
                         onChange={manejarCambio}
-                        placeholder="Ingresá 123456"
+                        placeholder="Ingresá tu contraseña"
                     />
+
                     <small className="text-danger fw-bold">
                         {errores.password}
                     </small>
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100">
+                <Button
+                    variant="primary"
+                    type="submit"
+                    className="w-100"
+                >
                     Entrar
                 </Button>
+
             </Form>
         </Container>
     );

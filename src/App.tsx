@@ -7,7 +7,7 @@ import { DetallePostPage } from './pages/DetallePostPage';
 import { Navbar } from './components/Navbar';
 import { ProfilePage } from './pages/ProfilePage';
 import { PublicacionPage } from './pages/PublicacionPage';
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -25,11 +25,19 @@ function App() {
           {/* Ruta dinámica para el detalle de un post */}
           <Route path="/post/:id" element={<DetallePostPage />} />
 
-          {/*Ruta para ir al perfil*/}
-          <Route path='/profile' element={<ProfilePage/>} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+          />
 
-          {/*Ruta para crear publicacion*/}
-          <Route path='/publicacion' element={<PublicacionPage/>}/>
+          <Route path="/publicacion" element={
+            <ProtectedRoute>
+              <PublicacionPage />
+            </ProtectedRoute>
+          }
+          />
           
           {/* Por si escriben cualquier otra URL, que vuelva al home */}
           <Route path="*" element={<HomePage />} />
