@@ -5,7 +5,7 @@ import { PostCard } from "../components/PostCard";
 import { useNavigate } from "react-router-dom";
 
 export function ProfilePage(){
-    const {user} = useAuth()
+    const { user, logout } = useAuth();
     const [posts, setPosts] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
@@ -14,6 +14,10 @@ export function ProfilePage(){
     const API_URL = "http://localhost:3001";
     
         useEffect(() => {
+            const cerrarSesion = () => {
+                logout();
+                navigate("/login");
+            };
             const traerPublicaciones = async () => {
                 try {
                     const respuesta = await fetch(`${API_URL}/posts?nickName={user?.nickName}`);
@@ -61,6 +65,13 @@ export function ProfilePage(){
             </Row>
             <Button onClick={()=> navigate("/publicacion")}>
                 <p>Nueva publicación</p>
+            </Button>
+            <Button
+                variant="danger"
+                className="ms-2"
+                onClick={cerrarSesion}
+            >
+                Cerrar sesión
             </Button>
         </Container>
     )
