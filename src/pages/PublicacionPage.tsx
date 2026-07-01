@@ -16,6 +16,7 @@ export function PublicacionPage() {
   const [imageUrls, setImageUrls] = useState<string[]>([""]);
   const [tagsDisponibles, setTagsDisponibles] = useState<Tag[]>([]);
   const [tagsSeleccionados, setTagsSeleccionados] = useState<number[]>([]);
+  const [tagsNuevos,setTagsNuevos] = useState("")
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
   const API_URL = "http://localhost:3001";
@@ -62,6 +63,11 @@ export function PublicacionPage() {
     setError("");
 
     try {
+      const tagNamesArray = tagsNuevos
+      .split(",")
+      .map((t) => t.trim())
+      .filter((t) => t !== "");
+
       const postRespuesta = await fetch("http://localhost:3001/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,6 +75,7 @@ export function PublicacionPage() {
           description,
           userId: user?.id,
           tagIds: tagsSeleccionados,
+          tagNames: tagNamesArray,
         }),
       });
 
@@ -164,8 +171,15 @@ export function PublicacionPage() {
                 ))}
               </div>
             </Form.Group>
+            <Form.Label className="mt-2">Escribí los tags que quieras agregar separados por coma</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="ej: javascript, react, tips"
+              value={tagsNuevos}
+              onChange={(e) => setTagsNuevos(e.target.value)}
+  />
 
-            <Button type="submit" className="w-100" disabled={cargando}>
+            <Button type="submit" className="w-100 mt-3" disabled={cargando}>
               {cargando ? "Publicando..." : "Publicar"}
             </Button>
             <Button

@@ -121,7 +121,7 @@ export function DetallePostPage() {
     return (
         <Container className="mt-5 mb-5" style={{ maxWidth: "800px" }}>
             <Link to="/">
-                <Button variant="outline-secondary" className="mb-3">
+                <Button className="mb-3" style={{backgroundColor:"#1a2a3a"}}>
                     ⬅ Volver al Feed
                 </Button>
             </Link>
