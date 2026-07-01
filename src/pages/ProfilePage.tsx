@@ -63,8 +63,8 @@ export function ProfilePage() {
             )}
 
             {!cargando && !error && posts.length === 0 && (
-                <Alert variant="info">
-                    ¡Todavía no realizaste publicaciones!
+                <Alert variant="secondary" className="border border-secondary bg-dark text-light text-center">
+                ¡Todavía no realizaste publicaciones!
                 </Alert>
             )}
             
@@ -82,7 +82,7 @@ export function ProfilePage() {
                 </Button>
                 <Button
                     variant="danger"
-                    className="ms-2"
+                    className="btn-logout"
                     onClick={cerrarSesion}
                 >
                     Cerrar sesión

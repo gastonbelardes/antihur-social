@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { PostCard } from '../components/PostCard';
 import type { Post } from '../types/interfaces';
@@ -34,18 +35,32 @@ export function HomePage() {
     return (
         <Container className="mt-4">
             {/* SECCIÓN LIBRE: Banner de Bienvenida */}
-            <div className="bg-dark text-light p-5 rounded-3 mb-5 border border-secondary text-center shadow">
-                <h1 className="text-info fw-bold mb-3">Bienvenido a Anti-Social Net 🌐</h1>
-                <p className="lead">
-                    La única red social donde ser antisocial es el requisito principal.
-                </p>
-                <hr className="bg-secondary my-4" />
-                <p className="fst-italic text-muted">
-                    "Explorá lo que otros (no) están haciendo. Mantené tu distancia, dejá un comentario rápido y seguí con tu vida."
-                </p>
+         <div 
+            className="p-5 rounded-3 mb-5 text-center shadow" 
+            style={{ 
+            backgroundColor: '#1a2a3a', 
+            color: '#ffffff', 
+            border: '1px solid #3498db' // El borde cian para cerrar el estilo
+  }}
+>
+            {/* Título en naranja */}
+            <h1 className="fw-bold mb-3" style={{ color: '#ff5722' }}>
+             {'<AntiSocial />'} 
+            </h1>
+    
+            <p className="lead">
+             La única red social donde ser antisocial es el requisito principal.
+            </p>
+    
+            {/* HR con borde cian para mantener la coherencia */}
+            <hr style={{ borderColor: '#3498db', opacity: 0.5 }} />
+    
+            <p className="fst-italic" style={{ color: '#b0c4de' }}>
+            "Explorá lo que otros (no) están haciendo. Mantené tu distancia, dejá un comentario rápido y seguí con tu vida."
+            </p>
             </div>
 
-            <h3 className="mb-4 text-dark">Feed de Publicaciones</h3>
+            <h3 className="mb-4 text-info fw-bold">Feed de Publicaciones</h3>
 
             {/* ESTADOS: Cargando y Error */}
             {cargando && (
@@ -60,7 +75,9 @@ export function HomePage() {
             )}
 
             {!cargando && !error && posts.length === 0 && (
-                <Alert variant="info">Todavía no hay publicaciones. ¡El vacío es total!</Alert>
+                <Alert variant="secondary" className="border border-secondary bg-dark text-light text-center">
+                    ¡Todavía no realizaste publicaciones!
+                </Alert>
             )}
 
             {/* GRILLA DE POSTS */}
