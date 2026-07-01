@@ -179,7 +179,7 @@ Se pueden agregar capturas de:
 ## 👨‍💻 Integrantes
 
  Uriel Zagert Hollmann
- Gaton Belardes
+ Gaston Belardes
  Tobias Ramirez
  Agustin Frecha
 
