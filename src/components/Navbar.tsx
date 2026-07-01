@@ -17,6 +17,7 @@ export const Navbar = () => {
     
     <BootstrapNavbar 
       expand="lg" 
+      variant='dark'
       className="px-4 py-3 border-bottom border-secondary shadow-sm"
       style={{ backgroundColor: '#1a2a3a' }} 
 >
