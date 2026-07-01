@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export function ProfilePage() {
     const { user, logout } = useAuth();
+
     const [posts, setPosts] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
@@ -48,15 +49,22 @@ export function ProfilePage() {
             {cargando && (
                 <div className="text-center my-5">
                     <Spinner animation="border" variant="info" />
-                    <p className="text-light mt-2">Cargando tus publicaciones...</p>
+                    <p className="text-light mt-2">
+                        Cargando tus publicaciones...
+                    </p>
                 </div>
             )}
+
             {error && (
-                <Alert variant="danger">{error}</Alert>
+                <Alert variant="danger">
+                    {error}
+                </Alert>
             )}
 
             {!cargando && !error && posts.length === 0 && (
-                <Alert variant="info">¡Todavía no realizaste publicaciones!</Alert>
+                <Alert variant="info">
+                    ¡Todavía no realizaste publicaciones!
+                </Alert>
             )}
             
             <Row>

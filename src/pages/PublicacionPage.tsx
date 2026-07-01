@@ -5,8 +5,12 @@ import { useAuth } from "../context/AuthContext";
 import type { Tag } from "../types/interfaces";
 
 export function PublicacionPage() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const cerrarSesion = () => {
+    logout();
+    navigate("/login");
+  };
 
   const [description, setDescription] = useState("");
   const [imageUrls, setImageUrls] = useState<string[]>([""]);
@@ -64,7 +68,7 @@ export function PublicacionPage() {
         body: JSON.stringify({
           description,
           userId: user?.id,
-          tags: tagsSeleccionados,
+          tagIds: tagsSeleccionados,
         }),
       });
 
@@ -74,7 +78,7 @@ export function PublicacionPage() {
 
       const urlsValidas = imageUrls.filter((url) => url.trim() !== "");
       for (const url of urlsValidas) {
-        await fetch("http://localhost:3001/postImages", {
+        await fetch(`${API_URL}/postimages`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -84,7 +88,7 @@ export function PublicacionPage() {
         });
       }
 
-      navigate("/mi-perfil");
+      navigate("/profile");
 
     } catch (err) {
       setError("Ocurrió un error al publicar. Intentá de nuevo.");
@@ -168,7 +172,7 @@ export function PublicacionPage() {
               type="button"
               variant="link"
               className="w-100 mt-2"
-              onClick={() => navigate("/mi-perfil")}
+              onClick={() => navigate("/profile")}
             >
               Cancelar
             </Button>
