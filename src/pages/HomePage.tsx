@@ -77,7 +77,6 @@ export function HomePage() {
 
             <h3 className="mb-4 text-info fw-bold">Feed de Publicaciones</h3>
 
-            {/* Filtro por etiquetas */}
             {!cargando && !error && posts.length > 0 && (
                 <div className="mb-4 d-flex flex-wrap align-items-center gap-2">
                     <span className="fw-bold text-muted me-2" style={{ fontSize: '0.9rem' }}>Filtrar por:</span>
@@ -103,7 +102,6 @@ export function HomePage() {
                 </div>
             )}
 
-            {/* Estados: Cargando y Error */}
             {cargando && (
                 <div className="text-center my-5">
                     <Spinner animation="border" variant="primary" />
@@ -121,7 +119,6 @@ export function HomePage() {
                 </Alert>
             )}
 
-            {/* Grilla de Posts */}
             {!cargando && !error && (
                 <Row>
                     {postsFiltrados.length === 0 && etiquetaSeleccionada ? (

@@ -75,10 +75,10 @@ export function RegistroPage() {
                     navigate("/login");
                 }, 2000);
             } else {
-                // El mensaje nuevo que pediste
+               
                 setErrorServer("Nombre de usuario en uso, prueba con otro.");
                 
-                // Generamos las 3 sugerencias
+                
                 const base = datos.nickName;
                 setSugerencias([
                     `${base}${Math.floor(Math.random() * 100)}`,
@@ -96,7 +96,7 @@ export function RegistroPage() {
         <Container className="mt-5" style={{ maxWidth: "500px" }}>
             <h2 className="mb-4">Crear Cuenta</h2>
 
-            {/* ALERTA DE ERROR + SUGERENCIAS CLICKEABLES */}
+           
             {errorServer && (
                 <Alert variant="danger">
                     <div>{errorServer}</div>
@@ -123,7 +123,7 @@ export function RegistroPage() {
                 </Alert>
             )}
 
-            {/* ALERTA DE ÉXITO */}
+            
             {registroExitoso && (
                 <Alert variant="success">
                     ¡Usuario creado con éxito! Redirigiéndote al login...

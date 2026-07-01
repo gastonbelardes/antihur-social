@@ -34,7 +34,6 @@ export const Navbar = () => {
             {user ? (
               <>
                 <Nav.Link as={Link} to="/mi-perfil" className="mx-2" style={{ color: '#ffffff' }}>Mi Perfil</Nav.Link>
-                {/* Convertimos el link de cerrar sesión en un botón para que destaque */}
                 <Button 
                   variant="outline-secondary" 
                   size="sm" 

@@ -11,7 +11,6 @@ export function PostCard({ post }: { post: Post }) {
     return (
         <Card className="mb-4 shadow-sm bg-dark text-light border-secondary">
             
-            {/* Imagen del post o imagen aleatoria de relleno */}
             <Card.Img 
                 variant="top" 
                 src={post.image ? post.image : `https://picsum.photos/seed/${post.id}/600/300`} 
@@ -23,7 +22,7 @@ export function PostCard({ post }: { post: Post }) {
                 
                 <Card.Subtitle className="mb-3 text-info d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center">
-                        {/* Avatar dinámico "Thumbs" */}
+                       
                         <img 
                             src={`https://api.dicebear.com/10.x/thumbs/svg?seed=${post.User?.nickName}`} 
                             alt="Avatar" 

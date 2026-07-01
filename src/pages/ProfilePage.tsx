@@ -15,7 +15,7 @@ export function ProfilePage() {
     
     const API_URL = "http://localhost:3001";
     
-    // 1. La función sale del useEffect y se queda acá arriba, accesible para todos
+    
     const cerrarSesion = () => {
         logout();
         navigate("/login");
@@ -24,7 +24,7 @@ export function ProfilePage() {
     useEffect(() => {
         const traerPublicaciones = async () => {
             try {
-                // 2. Corregido el endpoint para usar userId como pide el profesor
+               
                 const respuesta = await fetch(`${API_URL}/posts?userId=${user?.id}`);
                 if (!respuesta.ok) {
                     throw new Error("Error al traer las publicaciones");
@@ -40,7 +40,7 @@ export function ProfilePage() {
         };
 
         traerPublicaciones();
-    }, [user?.id]); // 3. Actualizamos la dependencia al ID
+    }, [user?.id]); 
         
     return (
         <Container className="mt-5" >

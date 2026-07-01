@@ -29,7 +29,7 @@ export function PublicacionPage() {
     traerTags();
   }, []);
 
-  // Actualiza una URL específica por su índice
+  
   function manejarCambioUrls(index: number, value: string) {
     setImageUrls((prev) => {
       const updated = [...prev];
@@ -38,12 +38,12 @@ export function PublicacionPage() {
     });
   }
 
-  // Agrega un nuevo campo de URL vacío
+  
   function manejarAgregarUrl() {
     setImageUrls((prev) => [...prev, ""]);
   }
 
-  // Elimina un campo de URL por su índice
+ 
   function manejarEliminarUrl(index: number) {
     setImageUrls((prev) => prev.filter((_, i) => i !== index));
   }

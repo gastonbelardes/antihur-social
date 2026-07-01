@@ -73,7 +73,7 @@ export function DetallePostPage() {
             if (respuesta.ok) {
                 const comentarioCreado = await respuesta.json();
                 
-                // ¡Acá está la magia de TS para asegurar que post existe!
+                
                 if (post) {
                     setPost({
                         ...post,

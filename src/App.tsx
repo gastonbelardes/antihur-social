@@ -14,14 +14,14 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          {/* Ruta principal: Feed de posts */}
+        
           <Route path="/" element={<HomePage />} />
           
-          {/* Rutas de autenticación */}
+        
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registro" element={<RegistroPage />} />
           
-          {/* Ruta dinámica para el detalle de un post */}
+        
           <Route path="/post/:id" element={<DetallePostPage />} />
 
           <Route path="/mi-perfil" element={
@@ -38,7 +38,6 @@ function App() {
           }
           />
           
-          {/* Por si escriben cualquier otra URL, que vuelva al home */}
           <Route path="*" element={<HomePage />} />
         </Routes>
       </BrowserRouter>

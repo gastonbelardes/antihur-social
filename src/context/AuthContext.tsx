@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import type { AuthContextType, User } from "../types/auth";
 
-// Definimos el contexto
+
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const API_URL = "http://localhost:3001";
