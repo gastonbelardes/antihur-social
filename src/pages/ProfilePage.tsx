@@ -3,11 +3,12 @@ import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
 import { PostCard } from "../components/PostCard";
 import { useNavigate } from "react-router-dom";
+import type { Post } from "../types/interfaces";
 
 export function ProfilePage() {
     const { user, logout } = useAuth();
 
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -68,7 +69,7 @@ export function ProfilePage() {
             )}
             
             <Row>
-                {posts.map((post: any) => (
+                {posts.map((post: Post) => (
                     <Col md={6} lg={4} key={post.id}>
                         <PostCard post={post} />
                     </Col>
