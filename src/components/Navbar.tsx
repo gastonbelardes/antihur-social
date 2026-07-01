@@ -25,7 +25,7 @@ export const Navbar = () => {
             <Nav.Link as={Link} to="/">Feed</Nav.Link>
             {user ? (
               <>
-                <Nav.Link as={Link} to="/profile">Mi Perfil</Nav.Link>
+                <Nav.Link as={Link} to="/mi-perfil">Mi Perfil</Nav.Link>
                 <Nav.Link onClick={handleCerrarSesion}>Cerrar Sesión</Nav.Link>
               </>
             ) : (

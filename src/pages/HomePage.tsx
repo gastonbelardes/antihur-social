@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { PostCard } from '../components/PostCard';
+import type { Post } from '../types/interfaces';
 
 export function HomePage() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
 
@@ -64,7 +65,7 @@ export function HomePage() {
 
             {/* GRILLA DE POSTS */}
             <Row>
-                {posts.map((post: any) => (
+                {posts.map((post: Post) => (
                     <Col md={6} lg={4} key={post.id}>
                         {/* Le pasamos los datos de cada post a nuestra tarjetita */}
                         <PostCard post={post} />

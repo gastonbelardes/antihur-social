@@ -1,7 +1,8 @@
 import { Card, Button, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import type { Post, Tag } from '../types/interfaces';
 
-export function PostCard({ post }: { post: any }) {
+export function PostCard({ post }: { post: Post }) {
     
     const fecha = new Date(post.createdAt).toLocaleDateString('es-AR', {
         day: 'numeric', month: 'short', year: 'numeric'
@@ -29,7 +30,7 @@ export function PostCard({ post }: { post: any }) {
                 
                 <div className="mb-3">
                     {post.Tags && post.Tags.length > 0 ? (
-                        post.Tags.map((tag: any) => (
+                        post.Tags.map((tag: Tag) => (
                             <Badge bg="secondary" className="me-2" key={tag.id}>
                                 #{tag.name}
                             </Badge>

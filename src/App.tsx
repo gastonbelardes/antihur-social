@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { RegistroPage } from './pages/RegistroPage';
@@ -11,7 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <AuthProvider>
+    
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -25,7 +24,7 @@ function App() {
           {/* Ruta dinámica para el detalle de un post */}
           <Route path="/post/:id" element={<DetallePostPage />} />
 
-          <Route path="/profile" element={
+          <Route path="/mi-perfil" element={
             <ProtectedRoute>
               <ProfilePage />
             </ProtectedRoute>
@@ -43,7 +42,7 @@ function App() {
           <Route path="*" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
-    </AuthProvider>
+    
   );
 }
 

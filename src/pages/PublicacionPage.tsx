@@ -2,6 +2,7 @@ import { useState, useEffect} from "react";
 import { Form, Button, Alert, Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import type { Tag } from "../types/interfaces";
 
 export function PublicacionPage() {
   const { user } = useAuth();
@@ -9,7 +10,7 @@ export function PublicacionPage() {
 
   const [description, setDescription] = useState("");
   const [imageUrls, setImageUrls] = useState<string[]>([""]);
-  const [tagsDisponibles, setTagsDisponibles] = useState([]);
+  const [tagsDisponibles, setTagsDisponibles] = useState<Tag[]>([]);
   const [tagsSeleccionados, setTagsSeleccionados] = useState<number[]>([]);
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
@@ -146,7 +147,7 @@ export function PublicacionPage() {
             <Form.Group className="mb-3">
               <Form.Label>Tags</Form.Label>
               <div className="d-flex flex-wrap gap-2">
-                {tagsDisponibles.map((tag: any) => (
+                {tagsDisponibles.map((tag: Tag) => (
                   <Button
                     key={tag.id}
                     type="button"

@@ -1,44 +1,47 @@
-import { Container, Spinner, Alert,Row,Col, Button} from "react-bootstrap";
+import { Container, Spinner, Alert, Row, Col, Button } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 import { PostCard } from "../components/PostCard";
 import { useNavigate } from "react-router-dom";
 
-export function ProfilePage(){
+export function ProfilePage() {
     const { user, logout } = useAuth();
     const [posts, setPosts] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     
     const API_URL = "http://localhost:3001";
     
-        useEffect(() => {
-            const cerrarSesion = () => {
-                logout();
-                navigate("/login");
-            };
-            const traerPublicaciones = async () => {
-                try {
-                    const respuesta = await fetch(`${API_URL}/posts?nickName={user?.nickName}`);
-                    if (!respuesta.ok) {
-                        throw new Error("Error al traer las publicaciones");
-                    }
-                    const data = await respuesta.json();
-                    setPosts(data);
-                } catch (err) {
-                    console.error(err);
-                    setError("No se pudieron cargar las publicaciones. ¿La API está encendida?");
-                } finally {
-                    setCargando(false);
+    // 1. La función sale del useEffect y se queda acá arriba, accesible para todos
+    const cerrarSesion = () => {
+        logout();
+        navigate("/login");
+    };
+
+    useEffect(() => {
+        const traerPublicaciones = async () => {
+            try {
+                // 2. Corregido el endpoint para usar userId como pide el profesor
+                const respuesta = await fetch(`${API_URL}/posts?userId=${user?.id}`);
+                if (!respuesta.ok) {
+                    throw new Error("Error al traer las publicaciones");
                 }
-            };
-    
-            traerPublicaciones();
-        }, []);
+                const data = await respuesta.json();
+                setPosts(data);
+            } catch (err) {
+                console.error(err);
+                setError("No se pudieron cargar las publicaciones. ¿La API está encendida?");
+            } finally {
+                setCargando(false);
+            }
+        };
+
+        traerPublicaciones();
+    }, [user?.id]); // 3. Actualizamos la dependencia al ID
         
-    return(
-        <Container  className="mt-5">
+    return (
+        <Container className="mt-5">
             <h1>Bienvenido, {user?.nickName} </h1>
             <h3>Mis publicaciones</h3>
 
@@ -55,24 +58,27 @@ export function ProfilePage(){
             {!cargando && !error && posts.length === 0 && (
                 <Alert variant="info">¡Todavía no realizaste publicaciones!</Alert>
             )}
+            
             <Row>
                 {posts.map((post: any) => (
                     <Col md={6} lg={4} key={post.id}>
-                        {/* Le pasamos los datos de cada post a nuestra tarjetita */}
                         <PostCard post={post} />
                     </Col>
                 ))}
             </Row>
-            <Button onClick={()=> navigate("/publicacion")}>
-                <p>Nueva publicación</p>
-            </Button>
-            <Button
-                variant="danger"
-                className="ms-2"
-                onClick={cerrarSesion}
-            >
-                Cerrar sesión
-            </Button>
+            
+            <div className="mt-4 mb-5">
+                <Button variant="primary" onClick={() => navigate("/publicacion")}>
+                    Nueva publicación
+                </Button>
+                <Button
+                    variant="danger"
+                    className="ms-2"
+                    onClick={cerrarSesion}
+                >
+                    Cerrar sesión
+                </Button>
+            </div>
         </Container>
-    )
+    );
 }

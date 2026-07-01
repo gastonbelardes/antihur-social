@@ -1,14 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Card, Spinner, Alert, Badge, Button, Form } from 'react-bootstrap';
-import { AuthContext } from '../context/AuthContext'; 
+import { AuthContext } from '../context/AuthContext';
+import type { Post } from '../types/interfaces';
 
 export function DetallePostPage() { 
     const { id } = useParams(); 
     const authContext = useContext(AuthContext) as any;
     const user = authContext?.user;
     
-    const [post, setPost] = useState<any>(null);
+    const [post, setPost] = useState<Post | null>(null);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
     
@@ -20,7 +21,6 @@ export function DetallePostPage() {
     useEffect(() => {
         const traerTodo = async () => {
             try {
-                
                 const [respuestaPost, respuestaComentarios] = await Promise.all([
                     fetch(`${API_URL}/posts/${id}`),
                     fetch(`${API_URL}/comments/post/${id}`) 
@@ -32,7 +32,6 @@ export function DetallePostPage() {
 
                 const dataPost = await respuestaPost.json();
                 const dataComentarios = await respuestaComentarios.json();
-
                 
                 setPost({
                     ...dataPost,
@@ -74,11 +73,13 @@ export function DetallePostPage() {
             if (respuesta.ok) {
                 const comentarioCreado = await respuesta.json();
                 
-                
-                setPost({
-                    ...post,
-                    Comments: [...(post.Comments || []), comentarioCreado]
-                });
+                // ¡Acá está la magia de TS para asegurar que post existe!
+                if (post) {
+                    setPost({
+                        ...post,
+                        Comments: [...(post.Comments || []), comentarioCreado]
+                    });
+                }
                 
                 setNuevoComentario("");
             } else {
@@ -142,7 +143,7 @@ export function DetallePostPage() {
 
                     <div className="mb-4 border-bottom border-secondary pb-4">
                         {post.Tags && post.Tags.length > 0 ? (
-                            post.Tags.map((tag: any) => (
+                            post.Tags.map((tag) => (
                                 <Badge bg="secondary" className="me-2 p-2 fs-6" key={tag.id}>
                                     #{tag.name}
                                 </Badge>
@@ -155,10 +156,10 @@ export function DetallePostPage() {
                     <h5 className="text-info mb-3">💬 Comentarios</h5>
                     <div className="comentarios-container mb-4">
                         {post.Comments && post.Comments.length > 0 ? (
-                            post.Comments.map((comentario: any, index: number) => (
+                            post.Comments.map((comentario, index) => (
                                 <div key={comentario.id || index} className="bg-secondary p-3 rounded mb-2 text-white">
                                     <strong className="text-dark">@{comentario.User?.nickName || "Anónimo"}: </strong>
-                                    <span>{comentario.content || comentario.description}</span>
+                                    <span>{comentario.content}</span>
                                 </div>
                             ))
                         ) : (
