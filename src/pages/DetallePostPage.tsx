@@ -127,8 +127,8 @@ export function DetallePostPage() {
             </Link>
 
             <Card className="shadow bg-dark text-light border-secondary">
-                {post.image && (
-                    <Card.Img variant="top" src={post.image} alt="Imagen" style={{ maxHeight: '400px', objectFit: 'cover' }} />
+                {post.PostImages && post.PostImages.length > 0 && (
+                    <Card.Img variant="top" src={post.PostImages[0].url} alt="Imagen" style={{ maxHeight: '400px', objectFit: 'cover' }} />
                 )}
                 
                 <Card.Body className="p-4">

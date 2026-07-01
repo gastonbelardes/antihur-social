@@ -13,14 +13,16 @@ export function PostCard({ post }: { post: Post }) {
             
             <Card.Img 
                 variant="top" 
-                src={post.image ? post.image : `https://picsum.photos/seed/${post.id}/600/300`} 
+                src={post.PostImages && post.PostImages.length > 0 
+                ? post.PostImages[0].url 
+                : `https://picsum.photos/seed/${post.id}/600/300`} 
                 alt="Imagen del post" 
                 style={{ maxHeight: '300px', objectFit: 'cover' }} 
             />
             
             <Card.Body>
                 
-                <Card.Subtitle className="mb-3 text-info d-flex justify-content-between align-items-center">
+                <Card.Subtitle className="mb-3 d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center">
                        
                         <img 
@@ -30,9 +32,9 @@ export function PostCard({ post }: { post: Post }) {
                             height="35" 
                             className="rounded-circle me-2 bg-secondary p-1" 
                         />
-                        <span className="fw-bold">@{post.User?.nickName || "Usuario desconocido"}</span>
+                        <span className="fw-bold text-info">@{post.User?.nickName || "Usuario desconocido"}</span>
                     </div>
-                    <span className="text-muted" style={{fontSize: '0.85em'}}>{fecha}</span>
+                    <span className="text-light opacity-75" style={{fontSize: '0.85em'}}>{fecha}</span>
                 </Card.Subtitle>
 
                 <Card.Text className="fs-5">
@@ -47,12 +49,12 @@ export function PostCard({ post }: { post: Post }) {
                             </Badge>
                         ))
                     ) : (
-                        <small className="text-muted">Sin etiquetas</small>
+                        <small className="text-light opacity-50">Sin etiquetas</small>
                     )}
                 </div>
 
                 <div className="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary">
-                    <small className="text-muted">
+                    <small className="text-light opacity-75">
                         💬 {post.Comments ? post.Comments.length : 0} comentarios
                     </small>
                     

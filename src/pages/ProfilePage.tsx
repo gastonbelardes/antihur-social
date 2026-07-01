@@ -44,8 +44,8 @@ export function ProfilePage() {
         
     return (
         <Container className="mt-5" >
-            <h1>Bienvenido, {user?.nickName} </h1>
-            <h3>Mis publicaciones</h3>
+            <h1>Bienvenido, <span style={{color:"#1d9fd6"}}>{user?.nickName}</span> </h1>
+            <h3 className="mt-3">Mis publicaciones</h3>
 
             {cargando && (
                 <div className="text-center my-5">

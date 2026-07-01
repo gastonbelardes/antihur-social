@@ -10,11 +10,16 @@ export interface Comment {
     content: string;
     User: User;
 }
+export interface PostImage {
+  id: number;
+  url: string;
+}
 
 export interface Post {
     id: number;
     description: string;
     image?: string;
+    PostImages? : PostImage[];
     createdAt: string;
     User: User;
     Tags: Tag[];
