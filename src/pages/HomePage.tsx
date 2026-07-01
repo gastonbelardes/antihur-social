@@ -34,17 +34,17 @@ export function HomePage() {
 
     return (
         <Container className="mt-4">
-            {/* SECCIÓN LIBRE: Banner de Bienvenida */}
+            
          <div 
-            className="p-5 rounded-3 mb-5 text-center shadow" 
+            className="banner-custom p-5 rounded-3 mb-5 text-center shadow" 
             style={{ 
             backgroundColor: '#1a2a3a', 
             color: '#ffffff', 
-            border: '1px solid #3498db' // El borde cian para cerrar el estilo
+            border: '1px solid #3498db'
   }}
 >
-            {/* Título en naranja */}
-            <h1 className="fw-bold mb-3" style={{ color: '#ff5722' }}>
+            
+            <h1 className="fw-bold mb-3">
              {'<AntiSocial />'} 
             </h1>
     
@@ -52,7 +52,7 @@ export function HomePage() {
              La única red social donde ser antisocial es el requisito principal.
             </p>
     
-            {/* HR con borde cian para mantener la coherencia */}
+            
             <hr style={{ borderColor: '#3498db', opacity: 0.5 }} />
     
             <p className="fst-italic" style={{ color: '#b0c4de' }}>
@@ -84,7 +84,7 @@ export function HomePage() {
             <Row>
                 {posts.map((post: Post) => (
                     <Col md={6} lg={4} key={post.id}>
-                        {/* Le pasamos los datos de cada post a nuestra tarjetita */}
+                        
                         <PostCard post={post} />
                     </Col>
                 ))}

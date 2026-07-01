@@ -43,14 +43,14 @@ export function ProfilePage() {
     }, [user?.id]); // 3. Actualizamos la dependencia al ID
         
     return (
-        <Container className="mt-5">
+        <Container className="mt-5" >
             <h1>Bienvenido, {user?.nickName} </h1>
             <h3>Mis publicaciones</h3>
 
             {cargando && (
                 <div className="text-center my-5">
                     <Spinner animation="border" variant="info" />
-                    <p className="text-light mt-2">
+                    <p className="text-light mt-2" >
                         Cargando tus publicaciones...
                     </p>
                 </div>

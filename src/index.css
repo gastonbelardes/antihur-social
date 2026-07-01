@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700&display=swap');
 
 :root {
-  /* Paleta Azul consolidada */
-  --blue-bg: #1a2a3a;      
-  --blue-border: #3498db;  
-  --blue-hover: #243b52;   
-  --accent-orange: #ff5722;
-  --bg-app: #ffffff;
+  /* --- PALETA PROFESIONAL UNIFICADA --- */
+  --bg-app: #ffffff;        /* Fondo general limpio */
+  --blue-bg: #1a2a3a;       /* Azul Oscuro: Navbar, Tarjetas, Banner */
+  --blue-hover: #243b52;    /* Estado hover de los contenedores */
+  
+  /* Tu nuevo acento profesional (Celeste/Cian de desarrollo) */
+  --accent-tech: #61dafb;   
+  --blue-border: #3498db;   /* Contornos definidos */
 }
 
 body {
@@ -22,13 +24,19 @@ body {
   border-radius: 12px !important;
 }
 
-/* Títulos y Nombres de usuario */
-.text-info, h1, h2, h3, .navbar-brand {
-  color: var(--accent-orange) !important;
+/* Títulos y Nombres de usuario (Solo dentro de elementos oscuros) */
+.card h1, .card h2, .card h3, .card h4, .card h5,
+.banner-custom h1, .banner-custom h2, .banner-custom h3 {
+  color: var(--accent-tech) !important;
+}
+
+/* Tipografías de marca generales */
+.text-info, .navbar-brand {
+  color: var(--accent-tech) !important;
   font-weight: 700 !important;
 }
 
-/* Botones: Estilo unificado */
+/* Botones: Estilo unificado (Cerrar sesión, Volver al feed, Ver más) */
 .btn-logout, .btn-outline-info {
   background-color: var(--blue-bg) !important;
   border: 1px solid var(--blue-border) !important;
@@ -38,12 +46,13 @@ body {
 
 .btn-logout:hover, .btn-outline-info:hover {
   background-color: var(--blue-hover) !important;
-  border-color: var(--blue-border) !important;
+  border-color: var(--accent-tech) !important;
 }
 
-/* Botón naranja principal */
+/* Botón principal (Nueva publicación, Comentar, etc.) */
 .btn-primary {
-  background-color: var(--accent-orange) !important;
-  border-color: var(--accent-orange) !important;
-  color: #ffffff !important;
+  background-color: var(--accent-tech) !important;
+  border-color: var(--accent-tech) !important;
+  color: #1a2a3a !important; /* Texto oscuro para máxima legibilidad sobre el celeste */
+  font-weight: 600;
 }
