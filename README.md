@@ -6,7 +6,7 @@ Trabajo Práctico N°2 - Construcción de Interfaces de Usuario
 
 Anti-Social Net es una aplicación web desarrollada con React y TypeScript que simula una red social. Los usuarios pueden registrarse, iniciar sesión, visualizar publicaciones, comentar publicaciones existentes y crear nuevas publicaciones propias.
 
-La aplicación consume una API REST provista para la materia y utiliza Context API para la gestión de sesiones de usuario.
+La aplicación consume una API REST provista para la materia (con algunas modificaciones) y utiliza Context API para la gestión de sesiones de usuario.
 
 ---
 
@@ -142,7 +142,7 @@ http://localhost:3001
 
 Repositorio:
 
-https://github.com/lucasfigarola/backend-api
+https://github.com/tobiasramirez/backend-api
 
 usamos las api:
  DiceBear(https://api.dicebear.com/) para los avatares 
