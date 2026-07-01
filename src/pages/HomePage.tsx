@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { PostCard } from '../components/PostCard';
 import type { Post, Tag } from '../types/interfaces';
+import { BotonNuevaPublicacion } from '../components/BotonNuevaPublicacion';
 
 export function HomePage() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -136,6 +137,7 @@ export function HomePage() {
                     )}
                 </Row>
             )}
+            <BotonNuevaPublicacion></BotonNuevaPublicacion>
         </Container>
     );
 }

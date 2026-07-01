@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { PostCard } from "../components/PostCard";
 import { useNavigate } from "react-router-dom";
 import type { Post } from "../types/interfaces";
+import { BotonNuevaPublicacion } from "../components/BotonNuevaPublicacion";
 
 export function ProfilePage() {
     const { user, logout } = useAuth();
@@ -44,7 +45,7 @@ export function ProfilePage() {
         
     return (
         <Container className="mt-5" >
-            <h1>Bienvenido, <span style={{color:"#1d9fd6"}}>{user?.nickName}</span> </h1>
+            <h1 className="text-center">Bienvenido, <span style={{color:"#1d9fd6"}}>{user?.nickName}</span> </h1>
             <h3 className="mt-3">Mis publicaciones</h3>
 
             {cargando && (
@@ -77,9 +78,7 @@ export function ProfilePage() {
             </Row>
             
             <div className="mt-4 mb-5">
-                <Button variant="primary" onClick={() => navigate("/publicacion")}>
-                    Nueva publicación
-                </Button>
+                <BotonNuevaPublicacion/>
                 <Button
                     variant="danger"
                     className="btn-logout"
